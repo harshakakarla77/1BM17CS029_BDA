@@ -1,0 +1,39 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 cqlsh> CREATE KEYSPACE Library with replication = \{'class': 'SimpleStrategy', 'replication_factor': 1\};\
+\
+cqlsh> USE library;\
+\
+cqlsh:library> CREATE COLUMNFAMILY Library_Info(\
+           ...         Stud_id int,\
+           ...         Counter_val counter,\
+           ...         Stud_name text,\
+           ...         Book_name text,\
+           ...         Book_id int,\
+           ...         Date_of_issue date,\
+           ...         primary key (Stud_id, Stud_name, Book_name, Book_id, Date_of_issue)\
+           ...     );\
+\
+cqlsh:library> Update Library_Info set Counter_val = Counter_val + 1 where Stud_id=121 and Stud_name = 'Amit' and Book_id=130 and Book_name='DSR' and date_of_issue='2020-09-19';\
+\
+cqlsh:library> Update Library_Info set Counter_val = Counter_val + 1 where Stud_id=142 and Stud_name = 'Bharath' and Book_id=134 and Book_name='Data Communications' and date_of_issue='2020-08-27';\
+\
+cqlsh:library> Update Library_Info set Counter_val = Counter_val + 1 where Stud_id=111 and Stud_name = 'Chandan' and Book_id=100 and Book_name='BDA' and date_of_issu\
+\
+cqlsh:library> select * from library_info;\
+\
+cqlsh:library> Update Library_Info set Counter_val = Counter_val + 1 where Stud_id=121 and Stud_name = 'Amit' and Book_id=130 and Book_name='DSR' and date_of_issue='2020-09-19';\
+\
+cqlsh:library> select * from library_info;\
+\
+cqlsh:library> select * from Library_Info where Stud_id=121 and Counter_val=2 ALLOW FILTERING;\
+\
+cqlsh:library> Copy Library_info(Stud_id, Stud_name, Book_name, Book_id, Date_of_issue, Counter_val) TO 'Users\\harshakakarla77\\dsr\\bankdata.csv';\
+\
+cqlsh:library> COPY ModifiedData FROM 'Users\\harshakakarla77\\dsr\\ModifiedData.csv';\
+}
